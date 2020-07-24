@@ -1,5 +1,5 @@
 
-types = {'fire':3,'water':2, 'grass':1}
+types = ['fire','water', 'grass']
 class Pokemon:
     def __init__(self, name, level, type_, max_health, current_health, is_knocked_out):
         self.name = name
@@ -10,38 +10,32 @@ class Pokemon:
         self.knocked_out = is_knocked_out
 
     def lose_health(self, health_lost):
-        self.health_lost = health_lost
-        self.current_health - health_lost
-        return self.name +  ' now has ' + str(self.current_health) + ' health points'
+        new_current_health = self.current_health - health_lost
+        self.current_health = new_current_health
+        return '%s now has %s health points' %(self.name, self.current_health)
 
     def gain_health(self, health_gained):
-        self.health_gained = health_gained
-        self.current_health + health_gained
-        return self.name + ' now has ' + str(self.current_health) + ' health points'
+        new_current_health = self.current_health + health_gained
+        self.current_health = new_current_health
+        return '%s now has %s health points' %(self.name, self.current_health)
 
     def knocked_out(self):
-        self.knocked_out == True
+        self.knocked_out = True
 
     def revived(self):
-        self.knocked_out == False
+        self.knocked_out = False
 
     def attack(self, pokemon_attacked, damage_dealt):
-        self.attack = pokemon_attacked
-        self.damage_dealt = damage_dealt
-        if self.type_ > pokemon_attacked.type_:
-             pokemon_attacked.lose_health(self.level * 2)
-        elif self.type_ < pokemon_attacked.type_:
-            pokemon_attacked.lose_health(self.level * 0.5)
-        else:
-            pokemon_attacked.lose_health(self.level)
+        pass
 
 
-john = Pokemon('John', 4, types['fire'], 20, 20, False)
-ben = Pokemon('Ben', 2, types['water'], 15, 15, False)
-steve = Pokemon('Steve', 5, types['grass'], 10, 10, False)
+john = Pokemon('john', 1, 'fire', 20, 20, False)
+peter = Pokemon('Peter', 2, 'water', 25, 25, False)
 
-
-
+print(john.lose_health(5))
+print(peter.gain_health(5))
+    
+    
 
             
         
