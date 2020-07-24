@@ -25,17 +25,25 @@ class Pokemon:
     def revived(self):
         self.knocked_out = False
 
-    def attack(self, pokemon_attacked, damage_dealt):
-        pass
+    def attack(self, pokemon_attacked):
+        if (self.type_ == 'fire' and pokemon_attacked.type_ == 'grass') or (self.type_ == 'grass' and pokemon_attacked.type_ == 'water') or (self.type_ == 'water' and pokemon_attacked.type_ == 'fire'):
+            pokemon_attacked.lose_health(self.level * 2)
 
+        elif (self.type_ == 'grass' and pokemon_attacked.type_ == 'fire') or (self.type_ == 'water' and pokemon_attacked.type_ == 'grass') or (self.type_ == 'fire' and pokemon_attacked.type_ == 'water'):
+            pokemon_attacked.lose_health(self.level * 0.5)
+
+        else:
+            pokemon_attacked.lose_health(self.level)
 
 john = Pokemon('john', 1, 'fire', 20, 20, False)
 peter = Pokemon('Peter', 2, 'water', 25, 25, False)
 
+
+peter.attack(john)
 print(john.lose_health(5))
-print(peter.gain_health(5))
+print(peter.current_health)
     
-    
+
 
             
         
